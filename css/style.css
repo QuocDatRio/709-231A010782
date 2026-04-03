@@ -1,0 +1,154 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+  min-height: 100vh;
+  transition: 0.3s;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: linear-gradient(45deg, #141e30, #243b55);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+  transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+  color: #00d4ff !important;
+  transform: translateY(-2px);
+}
+
+/* ===== HERO ===== */
+h1 {
+  background: linear-gradient(45deg, #007bff, #00d4ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ===== CARD ===== */
+.card {
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.85);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== INPUT ===== */
+input {
+  border-radius: 10px !important;
+  padding: 10px;
+}
+
+/* ===== ERROR ===== */
+#error {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ===== COUNTDOWN ===== */
+#time {
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ===== WARNING ===== */
+.warning {
+  color: red;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ===== TOAST ===== */
+.toast-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  animation: fadeIn 0.5s;
+  z-index: 999;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1;}
+}
+
+/* ===== DARK MODE ===== */
+.dark {
+  background: #121212;
+  color: white;
+}
+
+.dark .card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark .navbar {
+  background: #000;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: rgba(0,0,0,0.1);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  #time {
+    font-size: 40px;
+  }
+}
+.info-box {
+    border: 2px solid #000000;      
+    padding: 15px;              
+    width: 300px;
+    margin: 20px auto;           
+    border-radius: 10px;         
+    background-color: #fafafa;   
+}
+@media (max-width: 480px) {
+  .card {
+    margin-bottom: 15px;
+  }
+
+}
