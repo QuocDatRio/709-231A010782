@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lý thuyết</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        p {
+            text-align: justify;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body class="container mt-4">
+    <h2 class="mb-4">PHẦN LÝ THUYẾT</h2>
+
+    <h4>Câu 1:</h4>
+    <h5>
+        * Sự khác biệt giữa position: absolute và position: relative
+    </h5>
+    <table border=1>
+        <tr>
+            <th>Thuộc tính</th>
+            <th>Hệ quy chiếu dịch chuyển để dịch chuyển (top, left, ...)</th>
+            <th>Ảnh hưởng đến phần tử khác</th>
+        </tr>
+        <tr>
+            <td>position: relative</td>
+            <td>Chính vị trí ban đầu của nó nếu không có thuộc tính position</td>
+            <td>Vẫn giữ nguyên khoảng trống ban đầu. Các phần tử khác không nhảy vào chiếm chỗ.</td>
+        </tr>
+        <tr>
+            <td>position: absolute</td>
+            <td>Phần tử cha gần nhất có dùng position (thường là relative, absolute, hoặc fixed). Nếu không có, nó sẽ
+                bám theo thẻ body</td>
+            <td>Bị tách khỏi luồng tài liệu (document flow). Nó như đang "bay" lên một lớp khác, các phần tử dưới đất sẽ
+                nhảy vào chiếm chỗ của nó.</td>
+        </tr>
+    </table>
+    
+    <h5>* Ví dụ thực tế trong Layout Responsive</h5>
+    <p>Để tạo ra một giao diện co giãn tốt trên nhiều thiết bị (Responsive), bộ đôi này thường được dùng kết hợp theo
+        công thức: Cha relative - Con absolute.</p>
+    <h6>Tình huống 1: Tạo "Badge" (Huy hiệu) thông báo trên icon</h6>
+    <p>Giả sử bạn có một icon giỏ hàng và muốn hiển thị số lượng sản phẩm nhỏ xíu ở góc trên bên phải của icon đó.</p>
+    <p>Tính Responsive: Dù bạn có thu nhỏ màn hình khiến icon giỏ hàng nhảy đi đâu, cái badge màu đỏ vẫn luôn dính chặt
+        ở góc trên bên phải của icon đó mà không bị lệch ra ngoài.
+    </p>
+    <h6>Tình huống 2: Giữ tỷ lệ khung hình cho Video hoặc Ảnh (Aspect Ratio Box)</h6>
+    <P>Khi làm web responsive, bạn muốn một khung chứa video luôn giữ đúng tỷ lệ 16:9 dù màn hình lớn hay nhỏ.</P>
+    <p>Giải pháp: Bạn dùng position: relative cho khung ngoài với padding top: 56.25% (để tạo tỷ lệ 16:9). Sau đó, dùng
+        position: absolute cho thẻ iframe hoặc img bên trong với width: 100% và height: 100% để nó lấp đầy khung đó.</P>
+    
+        <h5>*Ảnh hưởng khi Deploy website và tính tương thích thiết bị</h5>
+    <p>Thực tế, bản thân thuộc tính CSS không trực tiếp ảnh hưởng đến quá trình deploy (đẩy code lên hosting như
+        Netlify, Vercel, hay server riêng). Tuy nhiên, cách bạn sử dụng chúng ảnh hưởng cực lớn đến hiển thị thực tế của
+        website sau khi deploy trên các thiết bị của người dùng.</p>
+    <P>+ Lạm dụng absolute gây tràn viền (Overflow): Nếu bạn rải absolute khắp nơi với các thông số fix cứng như left:
+        500px, khi deploy và mở bằng điện thoại (màn hình rộng chỉ khoảng 375px), phần tử đó sẽ bay thẳng ra ngoài màn
+        hình, tạo ra thanh cuộn ngang cực kỳ khó chịu.</P>
+    <P>+ Quên không đặt relative cho thẻ cha: Đây là lỗi kinh điển. Ở máy bạn (màn hình lớn), bạn thấy phần tử absolute
+        nằm khá chuẩn. Nhưng khi deploy, người dùng mở trên iPad, do không có cha làm mốc, nó sẽ bám vào thẻ body và bay
+        lung tung không kiểm soát được.</P>
+    <P>+ Gối đầu lên nhau (Z-index conflict): Khi dùng absolute, các phần tử rất dễ đè lên chữ hoặc menu khác. Bạn cần
+        kiểm tra kỹ thuộc tính z-index trên cả giao diện mobile và desktop sau khi deploy.</P>
+
+
+
+    <h4>Câu 2: </h4>
+    <h5>Quy trình đăng ký domain và cấu hình hosting cho website JavaScript</h5>
+    <h6>1. Quy trình đăng ký domain và cấu hình hosting</h6>
+    <h7>🔹 Bước 1: Đăng ký domain (tên miền)</h7>
+    <p>Domain là địa chỉ của website (ví dụ: example.com) giúp người dùng dễ dàng truy cập. Người dùng đăng ký domain
+        thông qua các nhà cung cấp như:
+    <p>+ GoDaddy</p>
+    <p>+ Namecheap</p>
+    <p>==> Sau khi đăng ký, bạn sẽ sở hữu quyền sử dụng tên miền trong một khoảng thời gian nhất định.</p>
+    <h7>🔹 Bước 2: Thuê hoặc sử dụng hosting </h7>
+    <p>Hosting là nơi lưu trữ mã nguồn website (HTML, CSS, JavaScript).
+        Đối với website đơn giản (frontend JavaScript), có thể dùng:
+    <p>+ Hosting miễn phí (static hosting)</p>
+    <p>+ Không cần server backend</p>
+    <h7>🔹 Bước 3: Upload mã nguồn website</h7>
+    <p>Upload các file: index.html / style.css / script.js</p>
+    <p>Thông qua: FTP (FileZilla) / Hoặc push code lên Git</p>
+    <h7>🔹 Bước 4: Cấu hình domain trỏ về hosting</h7>
+    <p>Truy cập quản lý domain</p>
+    <p>Cấu hình: A record → trỏ đến địa chỉ IP của server Hoặc CNAME → trỏ đến domain của hosting</p>
+
+    <h6>2. Vai trò của DNS</h6>
+    <p>DNS (Domain Name System) là hệ thống phân giải tên miền thành địa chỉ IP.</p>
+    <p>Ví dụ: example.com → 192.168.1.1</p>
+    <p>Vai trò chính:
+    <p>+ Giúp trình duyệt tìm đúng server chứa website </p>
+    <p>+ Kết nối giữa domain và hosting</p>
+    <p>+ Nếu DNS sai → website không truy cập được</p>
+
+    <h6>3. Công cụ deploy không cần server riêng </h6>
+    <p>GitHub Pages: </p>
+    <p>+ Deploy trực tiếp từ repository GitHub </p>
+    <p>+ Hỗ trợ HTTPS miễn phí</p>
+    <p>+ Phù hợp cho sinh viên, project nhỏ</p>
+    <p>Netlify</p>
+    <p>+ Kéo thả project để deploy </p>
+    <p>+ Tự động build và cập nhật khi push code</p>
+    <p>+ Có CDN giúp tăng tốc website</p>
+    <p> 👉 Ưu điểm chung: Không cần server riêng / Dễ sử dụng / Triển khai nhanh chóng </p>
+    <h6>4. Rủi ro bảo mật nếu không cấu hình đúng</h6>
+    <p> Không sử dụng HTTPS: Dữ liệu truyền không được mã hóa, dễ bị đánh cắp thông tin (man-in-the-middle)</p>
+    <p> Lộ thông tin nhạy cảm: để lộ API key trong file JavaScript, upload nhầm file .env, config</p>
+    <p>Cấu hình DNS sai: Website không truy cập được, có thể bị chiếm quyền domain (DNS hijacking)</p>
+    <p>Rủi ro: không có HTTPS, lộ API key, cấu hình sai DNS.</p>
+    <p>CORS và bảo mật trình duyệt: nếu không cấu hình đúng có thể bị tấn công từ domain khác, gây lỗi khi gọi API</p>
+    <p>Không kiểm soát truy cập:Ai cũng có thể truy cập file nhạy cảm nếu không cấu hình đúng quyền</p>
+    
+    <h4>Câu 3: </h4>
+    <h5>* So sánh let, const và var về scope và hoisting</h5>
+    <table border=1>
+        <tr>
+            <th>Tiêu chí </th>
+            <th>var</th>
+            <th>let</th>
+            <th>const</th>
+        </tr>
+        <tr>
+            <td>Scope</td>
+            <td>Function scope: Chỉ bị giới hạn bên trong một hàm.</td>
+            <td>Block scope: Bị giới hạn bên trong cặp ngoặc nhọn {...} (như if, for).</td>
+             <td>Block scope: Tương tự let.</td>
+        </tr>
+        <tr>
+            <td>Hoisting</td>
+            <td>Có. Khởi tạo bằng undefined. Bạn có thể gọi trước khi khai báo mà không lỗi.</td>
+            <td>Có, nhưng nằm trong vùng TDZ. Không thể truy cập trước khi dòng khai báo chạy.</td>
+                <td>Có, nhưng nằm trong vùng TDZ. Không thể truy cập trước khi dòng khai báo chạy.</td>
+    </tr>
+        <tr>
+            <td>Gán lại giá trị</td>
+            <td>Thoải mái.</td>
+            <td>Thoải mái.</td>
+                <td>Không thể. (Báo lỗi TypeError).</td>
+    </tr>
+    
+</table>
+<h5>* Ví dụ về một lỗi kinh điển thường gặp</h5>
+    <p>- Lỗi này hay xảy ra khi lập trình viên dùng var trong vòng lặp và vô tình làm biến "rò rỉ" ra ngoài, hoặc gặp lỗi bất đồng bộ.</p>
+    <img src = "images/VD.jpg">
+    
+    <p> + Kết quả mong muốn: In ra 0, 1, 2.</p>
+    <p> + Kết quả thực tế: In ra 3, 3, 3.</p>
+    <p> + Tại sao? Vì var có function scope, nên cả 3 hàm setTimeout đều tham chiếu chung tới một biến i duy nhất nằm ngoài vòng lặp. Khi 1 giây trôi qua và hàm chạy, vòng lặp đã kết thúc và i đã bằng 3.</p>
+    <p>==>Cách sửa nhanh: Chỉ cần đổi var i = 0 thành let i = 0. Nhờ block scope, mỗi vòng lặp let sẽ tạo ra một biến i độc lập nằm trong phạm vi ngoặc nhọn đó.</p>
+
+    <h5> * Cách Debug lỗi Scope và Hoisting bằng Chrome DevTools</h5>
+    <p>- Khi code không chạy như ý, cách tệ nhất là ngồi đoán mò hay console.log bừa bãi. Hãy dùng Sources Tab trong Chrome DevTools để "soi" từng dòng code đang chạy.</p>
+    <p>Các bước thực hiện:</p>
+            <p>Bước 1: Mở trang web của bạn trên Chrome, nhấn phím F12 (hoặc Ctrl + Shift + I trên Windows / Cmd + Option + I trên Mac) để mở DevTools.</p>
+            <p>Bước 2: Chuyển sang tab Sources. Ở cây thư mục bên trái, tìm và mở file JavaScript của bạn</p>
+            <p>Bước 3 (Đặt Breakpoint): Click vào số dòng code bạn muốn tạm dừng (ví dụ: dòng có lệnh setTimeout hoặc dòng khai báo biến). Bạn sẽ thấy một dấu chấm xanh dương xuất hiện ở số dòng.</p>
+            <p>Bước 4: Tải lại trang (Ctrl + R). Trình duyệt sẽ chạy code và khựng lại ngay đúng dòng bạn đánh dấu</p>
+
+
+    <p>- Đọc bảng "Scope" ở cột bên phải:</p>
+    <p> Khi code đang tạm dừng, bạn nhìn sang thanh công cụ bên phải và cuộn xuống mục Scope. Đây chính là "mỏ vàng" để debug:</p>
+            <p>+ Nếu bạn dùng var, bạn sẽ thấy biến đó nằm trong mục Global hoặc Local (nếu ở trong hàm).</p>
+            <p>+ Nếu bạn dùng let hoặc const, bạn sẽ thấy một mục mới xuất hiện tên là Block. Bạn có thể thấy rõ giá trị của biến đó ở lượt lặp hiện tại là bao nhiêu.</p>
+            <p>+ Nếu bạn đang đứng trước dòng khai báo let mà muốn xem giá trị của nó, DevTools sẽ báo lỗi chưa khởi tạo, chứng minh nó đang nằm trong TDZ.</p> 
+            <p>Nhờ việc soi trực tiếp vào các ô nhớ này trong Scope, bạn sẽ biết chính xác tại sao biến của mình lại mang một giá trị "trên trời dưới đất" nào đó.</p> 
+
+<h4>Câu 4: </h4>    
+
+<h5>* Khái niệm Event Delegation</h5>      
+
+<p>- Event Delegation (Ủy quyền sự kiện) là một kỹ thuật cực kỳ thông minh và phổ biến trong JavaScript. Thay vì gắn bộ lắng nghe sự kiện (Event Listener) cho từng phần tử con riêng lẻ, bạn chỉ gắn duy nhất một bộ lắng nghe sự kiện vào phần tử cha của chúng.</p>
+<P>- Kỹ thuật này hoạt động dựa trên cơ chế Event Bubbling (Sự kiện nổi bọt) trong JavaScript: Khi một sự kiện xảy ra trên một phần tử, nó không dừng lại ở đó mà sẽ "nổi bọt" dần lên các phần tử tổ tiên bao bọc nó.</P>
+<h5> * Ví dụ ứng dụng với Danh sách động (Dynamic List)</h5>
+<p>Hãy tưởng tượng bạn đang làm một ứng dụng To-Do List. Người dùng có thể liên tục thêm các công việc mới vào danh sách. Bạn muốn khi click vào bất kỳ việc nào, việc đó sẽ được đánh dấu là hoàn thành (gạch ngang chữ).
+    Nếu không dùng Event Delegation, mỗi lần thêm một "li" mới, bạn lại phải dùng JavaScript để gắn addEventListener cho nó. Rất cồng kềnh!
+</p>
+<p>Cách xử lý tối ưu:</p>
+<p>Code HTML</p>
+<img src = images/vd1.jpg>
+<br></br>
+<p>Code JavaScript</p>
+<img src = images/vd2.jpg>
+<br></br>
+<h5>* Lợi ích khi kết hợp với HTML/CSS để tối ưu hiệu suất</h5>
+<p>Kỹ thuật Event Delegation không chỉ dừng lại ở việc code gọn gàng hơn, mà nó mang lại lợi ích khổng lồ cho hiệu suất (Performance) của website khi kết hợp nhịp nhàng với HTML và CSS.</p>
+<p>🚀 Tiết kiệm bộ nhớ (Memory) vượt trội</p>
+<p>+ Nếu danh sách của bạn có $1000$ mục, cách làm thông thường sẽ tiêu tốn $1000$ vùng nhớ.</p>
+<p>+ Dùng Event Delegation, bạn chỉ tốn đúng $1$ vùng nhớ cho thẻ cha. Điều này giúp giảm tải cho CPU và RAM của thiết bị người dùng một cách đáng kể, đặc biệt là trên các thiết bị di động cấu hình yếu.</p>
+<p>🎨Giảm thiểu hiện tượng "Reflow" và "Repaint" của CSS</p>
+<p>+ Khi bạn thêm một phần tử mới vào DOM và gắn listener cho nó, trình duyệt thường phải tính toán lại bố cục (Reflow) và vẽ lại giao diện (Repaint). Bằng cách dồn toàn bộ logic xử lý sự kiện về cho thẻ cha và sử dụng CSS class để thay đổi trạng thái (như ví dụ .completed ở trên), bạn đang giúp trình duyệt tối ưu hóa việc render.</p>
+<p>🛠️ Đơn giản hóa việc quản lý DOM</p>
+<p>+ Khi phần tử con bị xóa bỏ khỏi danh sách, nếu bạn dùng cách cũ, bạn nên gỡ bỏ listener của nó để tránh rò rỉ bộ nhớ (memory leak). Với Event Delegation, vì listener nằm ở thẻ cha (vẫn luôn tồn tại), bạn có thể thoải mái xóa/thêm các phần tử con mà không lo lắng về việc dọn dẹp bộ nhớ thừa.</p>
+
+<h5> * Tận dụng tối đa với thuộc tính CSS</h5>
+<p>Đôi khi trong thẻ li của bạn có chứa các thẻ con nhỏ hơn như span hoặc i (icon). Khi người dùng click trúng cái icon, event.target lúc này sẽ trả về thẻ i chứ không phải li, khiến code check nodeName 'LI' của bạn bị sai.</p>
+<p>Để xử lý việc này cực mượt mà bằng CSS mà không cần viết thêm JS phức tạp, bạn chỉ cần thêm thuộc tính này vào CSS:</p>
+<img src="images/vd3.jpg">
+<br></br>
+<p>Lúc này, dù người dùng có click vào icon bên trong, trình duyệt vẫn hiểu là họ đang click vào thẻ li. Một sự kết hợp hoàn hảo giữa CSS và JS!</p>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
